@@ -14,6 +14,10 @@
 
 
     <!-- Account Tax Group -->
+    <record id="tax_group_tn_timbre" model="account.tax.group">
+        <field name="name">TIMBRE</field>
+    </record>
+
     <record id="tax_group_tn_fodec" model="account.tax.group">
         <field name="name">FODEC 1%</field>
     </record>
@@ -46,6 +50,11 @@
         <field name="applicability">taxes</field>
     </record>
 
+    <record id="tag_tn_timbre" model="account.account.tag">
+        <field name="name">TIMBRE</field>
+        <field name="applicability">taxes</field>
+    </record>
+
     <record id="tag_tn_tva_7" model="account.account.tag">
         <field name="name">TVA %7</field>
         <field name="applicability">taxes</field>
@@ -63,6 +72,23 @@
 
     <!-- account.tax.template -->
     <!-- VENTES Tax excluded from price -->
+    <record id="tn_timbre_sale" model="account.tax.template">
+        <field name="sequence">10</field>
+        <field name="description">TIMBRE</field>
+        <field name="name">TIMBRE (sale)</field>
+        <field name="account_id" ref="pcg_6654"/>
+        <field name="refund_account_id" ref="pcg_6654"/>
+        <field name="price_include" eval="0"/>
+        <field name="include_base_amount">1</field>
+        <field name="amount">0.600</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">sale</field>
+        <field name="chart_template_id" ref="tn_chart_template"/>
+        <field name="tag_ids" eval="[(6,0, [ref('tag_tn_timbre'), ref('tag_tn_tax_sale')])]"/>
+        <field name="tax_group_id" ref="tax_group_tn_timbre"/>
+        <field name="auto_tax" eval="1"/>
+    </record>
+
     <record id="tn_fodec_sale" model="account.tax.template">
         <field name="sequence">10</field>
         <field name="description">FODEC 1%</field>
@@ -126,6 +152,23 @@
 
 
     <!-- Achat Tax excluded from price -->
+    <record id="tn_timbre_purchase" model="account.tax.template">
+        <field name="sequence">10</field>
+        <field name="description">TIMBRE</field>
+        <field name="name">TIMBRE (purchase)</field>
+        <field name="account_id" ref="pcg_6654"/>
+        <field name="refund_account_id" ref="pcg_6654"/>
+        <field name="price_include" eval="0"/>
+        <field name="include_base_amount">1</field>
+        <field name="amount">1</field>
+        <field name="amount_type">fixed</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="chart_template_id" ref="tn_chart_template"/>
+        <field name="tag_ids" eval="[(6,0, [ref('tag_tn_timbre'), ref('tag_tn_tax_purchase')])]"/>
+        <field name="tax_group_id" ref="tax_group_tn_timbre"/>
+        <field name="auto_tax" eval="1"/>
+    </record>
+
     <record id="tn_fodec_purchase" model="account.tax.template">
         <field name="sequence">10</field>
         <field name="description">FODEC 1%</field>

@@ -10,7 +10,8 @@
               'Odoo-Eggs',
     'website': 'https://github.com/Odoo-Eggs/odooeggs-addons',
     'depends': [
-        'account'
+        'account',
+        'tax_auto_on_invoice'
     ],
     'data': [
         'data/account_chart_template_data.xml',
